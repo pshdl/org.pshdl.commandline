@@ -43,10 +43,10 @@ public class PSHDLCompiler {
 		if (iop == null) {
 			System.out.println("No such provider: " + arg + " please try one of: " + implementations.keySet().toString());
 		} else {
-			final List<String> subList = argList.subList(1, argList.size());
-			final CommandLine subCli = iop.getUsage().parse(subList.toArray(new String[subList.size()]));
-			final String result = iop.invoke(subCli);
+			argList.remove(0);
+			final String result = iop.invoke(parse);
 			if (result != null) {
+				System.out.flush();
 				System.err.println(result);
 				return;
 			}
