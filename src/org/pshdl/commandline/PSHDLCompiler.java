@@ -21,15 +21,11 @@ public class PSHDLCompiler {
 		new PSHDLCompiler().run(args);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private void run(String[] args) throws Exception {
 		final MultiOption options = getOptions();
 		final CommandLine parse = options.parse(args);
 		final List argList = parse.getArgList();
-		if (argList.size() == 0) {
-			options.printHelp(System.out);
-			return;
-		}
 		if (parse.hasOption("help")) {
 			options.printHelp(System.out);
 			return;

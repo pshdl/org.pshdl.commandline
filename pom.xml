@@ -23,7 +23,11 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
-
+					<archive>
+						<manifest>
+							<mainClass>org.pshdl.commandline.PSHDLCompiler</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 				<executions>
 					<execution>
