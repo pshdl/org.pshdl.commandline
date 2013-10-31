@@ -16,7 +16,7 @@ import com.google.common.io.*;
 
 public class PSHDLCompiler {
 	private final static Map<String, IOutputProvider> implementations = Maps.newHashMap();
-	private final static Preferences prefs = Preferences.systemNodeForPackage(PSHDLCompiler.class);
+	private final static Preferences prefs = Preferences.userNodeForPackage(PSHDLCompiler.class);
 
 	public static void main(String[] args) throws Exception {
 		HDLCore.defaultInit();
@@ -32,7 +32,7 @@ public class PSHDLCompiler {
 		final MultiOption options = getOptions();
 		final CommandLine parse = options.parse(args);
 		final List argList = parse.getArgList();
-		if (parse.hasOption("help")) {
+		if (parse.hasOption("help") || (args.length == 0)) {
 			options.printHelp(System.out);
 			return;
 		}
