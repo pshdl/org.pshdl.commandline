@@ -45,6 +45,7 @@ public class PSHDLCompiler {
 		final long oneWeekAgo = System.currentTimeMillis() - oneWeek;
 		if ((oneWeekAgo > lastCheck) && !parse.hasOption("nocheck")) {
 			new Thread(new Runnable() {
+				@Override
 				public void run() {
 					try {
 						final InputStream stream = new URL("http://api.pshdl.org/api/v0.1/compiler/version?localVersion=" + HDLCore.VERSION).openStream();
