@@ -83,7 +83,7 @@ public class PSHDLCompiler {
 		options.addOption(new Option("version", "Print the version of this compiler"));
 		options.addOption(new Option("help", "Print the usage options of this compiler"));
 		options.addOption(new Option("nocheck", "Don't check for an updated version of the command line"));
-		final List<MultiOption> sub = new LinkedList<IOutputProvider.MultiOption>();
+		final List<MultiOption> sub = Lists.newLinkedList();
 
 		final StringBuilder sb = new StringBuilder();
 		for (final Iterator<IOutputProvider> iterator = implementations.values().iterator(); iterator.hasNext();) {
