@@ -26,19 +26,25 @@
  ******************************************************************************/
 package org.pshdl.commandline;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.prefs.*;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.prefs.Preferences;
 
-import org.apache.commons.cli.*;
-import org.pshdl.model.utils.*;
-import org.pshdl.model.utils.services.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.pshdl.model.utils.HDLCore;
+import org.pshdl.model.utils.services.IOutputProvider;
 import org.pshdl.model.utils.services.IOutputProvider.MultiOption;
 
-import com.google.common.collect.*;
-import com.google.common.io.*;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.io.ByteStreams;
 
 public class PSHDLCompiler {
 	private final static Map<String, IOutputProvider> implementations = Maps.newHashMap();
