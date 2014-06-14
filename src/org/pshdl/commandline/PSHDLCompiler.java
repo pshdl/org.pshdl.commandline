@@ -28,6 +28,7 @@ package org.pshdl.commandline;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -82,7 +83,7 @@ public class PSHDLCompiler {
 					try {
 						final InputStream stream = new URL("http://api.pshdl.org/api/v0.1/compiler/version?localVersion=" + HDLCore.VERSION).openStream();
 						final byte[] byteArray = ByteStreams.toByteArray(stream);
-						final String remoteVersion = new String(byteArray).trim();
+						final String remoteVersion = new String(byteArray, StandardCharsets.UTF_8).trim();
 						if (!remoteVersion.equals(HDLCore.VERSION)) {
 							System.err.println("A new version of this compiler is available: " + remoteVersion + " local version: " + HDLCore.VERSION);
 						} else {
@@ -97,15 +98,16 @@ public class PSHDLCompiler {
 		final IOutputProvider iop = implementations.get(arg);
 		if (iop == null) {
 			System.out.println("No such provider: " + arg + " please try one of: " + implementations.keySet().toString());
-		} else {
-			argList.remove(0);
-			final String result = iop.invoke(parse);
-			if (result != null) {
-				System.out.flush();
-				System.err.println(result);
-				System.exit(0);
-				return;
-			}
+			System.exit(1);
+			return;
+		}
+		argList.remove(0);
+		final String result = iop.invoke(parse);
+		if (result != null) {
+			System.out.flush();
+			System.err.println(result);
+			System.exit(2);
+			return;
 		}
 		System.exit(0);
 	}
