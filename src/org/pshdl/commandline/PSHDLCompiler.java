@@ -48,7 +48,7 @@ import com.google.common.collect.Maps;
 import com.google.common.io.ByteStreams;
 
 public class PSHDLCompiler {
-	private final static Map<String, IOutputProvider> implementations = Maps.newHashMap();
+	private final static Map<String, IOutputProvider> implementations = Maps.newLinkedHashMap();
 	private final static Preferences prefs = Preferences.userNodeForPackage(PSHDLCompiler.class);
 
 	public static void main(String[] args) throws Exception {
